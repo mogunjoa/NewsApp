@@ -64,6 +64,7 @@ dependencies {
     implementation(libs.annotation)
     implementation(libs.core)
     implementation(libs.retrofit.converter)
+    implementation(libs.androidx.activity)
     kapt(libs.processor)
 
     implementation(libs.jsoup)

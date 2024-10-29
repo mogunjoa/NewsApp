@@ -10,12 +10,16 @@ import com.mogun.newsapp.databinding.ItemNewsBinding
 
 import com.mogun.newsapp.model.NewsModel
 
-class NewsAdapter : ListAdapter<NewsModel, NewsAdapter.ViewHolder>(diffUtil) {
+class NewsAdapter(private val onClick: (String) -> Unit) : ListAdapter<NewsModel, NewsAdapter.ViewHolder>(diffUtil) {
 
     inner class ViewHolder(private val binding: ItemNewsBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: NewsModel) {
             binding.titleTextViews.text = item.title
+
+            binding.root.setOnClickListener {
+                onClick(item.link)
+            }
 
             Glide.with(binding.thumbnailImageView).load(item.imageUrl)
                 .into(binding.thumbnailImageView)

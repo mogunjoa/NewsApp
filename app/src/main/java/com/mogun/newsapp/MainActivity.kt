@@ -1,6 +1,7 @@
 package com.mogun.newsapp
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.inputmethod.EditorInfo
@@ -41,7 +42,13 @@ class MainActivity : AppCompatActivity() {
 
         val newsService = retrofit.create(NewsService::class.java)
 
-        newsAdapter = NewsAdapter()
+        newsAdapter = NewsAdapter(onClick = { url ->
+            startActivity(
+                Intent(this, WebViewActivity::class.java).apply {
+                    putExtra("url", url)
+                }
+            )
+        })
         binding.newsRecyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = newsAdapter

@@ -70,6 +70,7 @@ dependencies {
     implementation(libs.jsoup)
 
     implementation(libs.glide)
+    implementation(libs.lottie)
 
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))

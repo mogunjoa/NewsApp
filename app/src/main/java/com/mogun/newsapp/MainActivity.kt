@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mogun.newsapp.adapter.NewsAdapter
 import com.mogun.newsapp.databinding.ActivityMainBinding
@@ -129,6 +130,8 @@ class MainActivity : AppCompatActivity() {
 
                 val list = response.body()?.channel?.items.orEmpty().transform()
                 newsAdapter.submitList(list)
+
+                binding.notFoundView.isVisible = list.isEmpty()
 
                 list.forEachIndexed { index, news ->
                     Thread {
